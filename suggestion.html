@@ -7,22 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../bootstrap-5.0.2-dist/css/bootstrap.min.css">
     <script src="../bootstrap-5.0.2-dist/js/bootstrap.js"></script>
-    <title>Document</title>
+    <title>Suggestion</title>
 </head>
 
 <body>
     <div class="container">
-        <form>
-            <div class="mb-3">
-                <label class="form-label">Firstname</label>
-                <input type="text" class="form-control" id="firstname" required>
+        <div class="mb-3 row mt-5">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Firstname</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="firstname">
             </div>
-            <div class="mb-3">
-                Suggestion : <p id="textHint"></p>
-
+        </div>
+        <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Suggestion :</label>
+            <div class="col-sm-10 ">
+                <p class="mt-2" id="textHint"></p>
             </div>
+        </div>
 
-        </form>
     </div>
     <script>
         let firstname = document.getElementById('firstname');
@@ -39,13 +41,13 @@
                         let characters = valuesArray.filter(function (word) {
                             return word.charAt(0) == firstname.charAt(0);
                         })
-                        textHint.innerText = characters;
+                        console.log(characters.join(", "))
+                        textHint.innerHTML = characters.join(", ");
                     }
                 }
                 xhttp.open("GET", "suggestion.txt", true);
                 xhttp.send();
             }
-            // console.log(username);
 
 
         })

@@ -23,7 +23,7 @@
             </div>
         
             <button type="button" class="btn btn-primary" id="btn">Submit</button>
-            <div id="demo">
+            <div class="mt-5" id="demo">
 
             </div>
         </form>
@@ -33,6 +33,7 @@
         btn.addEventListener("click", () => {
             let username = document.getElementById('username').value;
             let password = document.getElementById('password').value;
+            let message = document.getElementById('demo');
 
 
             console.log(username);
@@ -42,10 +43,11 @@
                     
                     var valuesArray = xhttp.responseText.split(' ');
                     
-                    if (username === valuesArray[0] && password == valuesArray[1]) {
-                        console.log('The values are the same!');
+                    if (username === valuesArray[0] && password === valuesArray[1]) {
+                        message.innerText= "The values are the same!";
                     } else {
-                        console.log('The values are different!');
+                        message.innerText= "The values are different!";
+
                     }
                 }
             }
