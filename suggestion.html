@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <script src="../bootstrap-5.0.2-dist/js/bootstrap.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <form>
+            <div class="mb-3">
+                <label class="form-label">Firstname</label>
+                <input type="text" class="form-control" id="firstname" required>
+            </div>
+            <div class="mb-3">
+                Suggestion : <p id="textHint"></p>
+
+            </div>
+
+        </form>
+    </div>
+    <script>
+        let firstname = document.getElementById('firstname');
+        firstname.addEventListener("input", () => {
+            let firstname = document.getElementById('firstname').value;
+            let textHint = document.getElementById('textHint');
+            if (firstname.length == 0) {
+                textHint.innerText = " ";
+            } else {
+                let xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (xhttp.readyState == 4 && xhttp.status == 200) {
+                        var valuesArray = xhttp.responseText.split(' ');
+                        let characters = valuesArray.filter(function (word) {
+                            return word.charAt(0) == firstname.charAt(0);
+                        })
+                        textHint.innerText = characters;
+                    }
+                }
+                xhttp.open("GET", "suggestion.txt", true);
+                xhttp.send();
+            }
+            // console.log(username);
+
+
+        })
+    </script>
+</body>
+
+</html>l

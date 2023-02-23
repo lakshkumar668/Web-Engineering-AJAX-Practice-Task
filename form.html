@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <script src="../bootstrap-5.0.2-dist/js/bootstrap.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <form>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" aria-describedby="emailHelp" required>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" required>
+            </div>
+        
+            <button type="button" class="btn btn-primary" id="btn">Submit</button>
+            <div id="demo">
+
+            </div>
+        </form>
+    </div>
+    <script>
+        let btn = document.getElementById('btn');
+        btn.addEventListener("click", () => {
+            let username = document.getElementById('username').value;
+            let password = document.getElementById('password').value;
+
+
+            console.log(username);
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    
+                    var valuesArray = xhttp.responseText.split(' ');
+                    
+                    if (username === valuesArray[0] && password == valuesArray[1]) {
+                        console.log('The values are the same!');
+                    } else {
+                        console.log('The values are different!');
+                    }
+                }
+            }
+            xhttp.open("GET", "test.txt", true);
+            xhttp.send();
+            
+        })
+    </script>
+</body>
+
+</html>l
